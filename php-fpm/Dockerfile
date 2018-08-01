@@ -1,17 +1,17 @@
 FROM php:7.2-fpm
 
 # System Dependencies.
-RUN sed -i 's/deb.debian.org/mirrors.cloud.tencent.com/g' /etc/apt/sources.list \
-    && apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y \
+#sed -i 's/deb.debian.org/mirrors.cloud.tencent.com/g' /etc/apt/sources.list \
         git \
         imagemagick \
         libicu-dev \
         # Required for SyntaxHighlighting
         python3 \
-            libfreetype6-dev \
-            libjpeg62-turbo-dev \
-            libmcrypt-dev \
-            libpng-dev \
+        libfreetype6-dev \
+        libjpeg62-turbo-dev \
+        libmcrypt-dev \
+        libpng-dev \
     --no-install-recommends && rm -r /var/lib/apt/lists/*
 
 # Install the PHP extensions we need
