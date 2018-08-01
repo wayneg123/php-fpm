@@ -20,7 +20,10 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
 # Install the default object cache.
 RUN pecl channel-update pecl.php.net \
     && pecl install apcu \
-    && docker-php-ext-enable apcu
+    && docker-php-ext-enable apcu \
+    && apt-get autoremove -y --purge \
+    && apt-get clean \
+    && rm -Rf /tmp/*
 
 # set recommended PHP.ini settings
 # see https://secure.php.net/manual/en/opcache.installation.php
